@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:componetesflutter/src/providers/menu_providers.dart';
 import 'package:componetesflutter/src/utils/icons_util.dart';
-
+import 'package:componetesflutter/src/pages/alerts_page.dart';
 
 class Home_Page extends StatelessWidget {
   final opciones = ['UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO', 'SEIS', 'SIETE'];
@@ -14,6 +16,12 @@ class Home_Page extends StatelessWidget {
       ),
       // body: ListView(children: _CrearItems()),
       body: _Lista(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.close),
+        onPressed: () {
+          Navigator.of(context);
+        },
+      ),
     );
   }
 
@@ -26,16 +34,15 @@ class Home_Page extends StatelessWidget {
       initialData: [],
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
         return ListView(
-          children: _listaItems(snapshot.data),
+          children: _listaItems(snapshot.data, context),
         );
       },
     );
   }
 
-
   /*retorna los objetos del json para pintarlos en la app
-  */ 
-  List<Widget> _listaItems(List<dynamic> data) {
+  */
+  List<Widget> _listaItems(List<dynamic> data, BuildContext context) {
     final List<Widget> opciones = [];
 
     data.forEach((opt) {
@@ -43,7 +50,13 @@ class Home_Page extends StatelessWidget {
         title: Text(opt['texto']),
         leading: getIcon(opt['icon']),
         trailing: Icon(Icons.exit_to_app, color: Colors.blueGrey),
-        onTap: () {},
+        onTap: () {
+          /*
+          final ruta = MaterialPageRoute(builder: (context) => AlertsPage());
+          Navigator.push(context, ruta);
+          */
+          Navigator.pushNamed(context, opt['ruta'] );
+        },
       );
 
       opciones..add(wiggetTemporal)..add(Divider());
@@ -51,9 +64,6 @@ class Home_Page extends StatelessWidget {
 
     return opciones;
   }
-
-
-
 
   /*metodo que llama a los items y los retorno para pintarlos
   */

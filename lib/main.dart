@@ -1,9 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:componetesflutter/src/routes/routes_page.dart';
 
-//mis importaciones
-import 'package:componetesflutter/src/pages/home_page.dart';
- 
+
 void main() => runApp(MyApp());
  
 class MyApp extends StatelessWidget {
@@ -13,8 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'componentes App',
-      home: Home_Page()
+      title: 'Componentes_App Flutter',
+
+      initialRoute: '/',
+
+      routes: getApliacationRoutes(),
     );
   }
 
