@@ -1,0 +1,150 @@
+import 'package:flutter/material.dart';
+
+class Inputs_Page extends StatefulWidget {
+  @override
+  _Inputs_PageState createState() => _Inputs_PageState();
+}
+
+class _Inputs_PageState extends State<Inputs_Page> {
+
+  //variables de los controles 
+  String _nombre = '';
+  String _email = '';
+  String _password = '';
+  TextEditingController _inputFielfecha = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Campos de Texto'),
+      ),
+      body: ListView(
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 17.0),
+        children: <Widget>[
+          _crearInput(),
+          Divider(
+            color: Colors.brown,
+          ),
+          _crearEmail(),
+          Divider(
+            color: Colors.brown,
+          ),
+          _crearInputPassword(),
+          Divider(
+            color: Colors.brown,
+          ),
+          _crearFecha(context),
+          Divider(
+            color: Colors.brown,
+          ),
+          
+        ],
+      ),
+    );
+  }
+
+  Widget _crearInput() {
+    return TextField(
+      autofocus: false,
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+        counter: Text('cantidad de letras: ${_nombre.length}'),
+        hintText: 'Nombre de la persona',
+        labelText: 'Nombre',
+        helperText: 'Solo el nombre',
+        suffixIcon: Icon(Icons.accessibility),
+        icon: Icon(Icons.account_circle),
+      ),
+      onChanged: (valor) {
+        setState(() {
+          _nombre = valor;
+        });
+      },
+    );
+  }
+
+  Widget _crearEmail() {
+    return TextField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+        labelText: 'Email',
+        suffixIcon: Icon(Icons.alternate_email),
+        icon: Icon(Icons.email),
+      ),
+      onChanged: (valorEmail) {
+        setState(() {
+          _email = valorEmail;
+        });
+      },
+    );
+  }
+
+  Widget _crearInputPassword() {
+    return TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+        labelText: 'Password',
+        counter: Text('Cantidad de caracteres: ${_password.length}'),
+        suffixIcon: Icon(Icons.lock_open),
+        icon: Icon(Icons.lock),
+      ),
+      onChanged: (valorp) {
+        setState(() {
+          _password = valorp;
+        });
+      },
+    );
+  }
+
+  Widget _crearFecha(BuildContext context) {
+    return TextField(
+      controller: _inputFielfecha,
+      enableInteractiveSelection: false,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+        labelText: 'Fecha de nacimiento',
+        hintText: 'Fecha de nacimiento',
+        suffixIcon: Icon(Icons.calendar_today),
+        icon: Icon(Icons.perm_contact_calendar),
+      ),
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+
+        setState(
+          () => _selectDate(context),
+        );
+      },
+    );
+  }
+
+  _selectDate(BuildContext context) async {
+    DateTime fechaSeleccionada = await showDatePicker(
+      context: context,
+      initialDate: new DateTime.now(),
+      firstDate: new DateTime(2010),
+      lastDate: new DateTime(2030),
+      locale: Locale('es','ES'),
+    );
+
+    if (fechaSeleccionada != null) {
+      setState(() => _inputFielfecha.text = fechaSeleccionada.toString(), );
+    }
+  }
+
+
+
+
+
+}
