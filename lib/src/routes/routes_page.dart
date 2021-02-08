@@ -6,6 +6,7 @@ import 'package:componetesflutter/src/pages/home_page.dart';
 import 'package:componetesflutter/src/pages/card_page.dart';
 import 'package:componetesflutter/src/pages/animated_container.dart';
 import 'package:componetesflutter/src/pages/inputs_page.dart';
+import 'package:componetesflutter/src/pages/sliders_page.dart';
 
 Map<String, WidgetBuilder> getApliacationRoutes() {
   return <String, WidgetBuilder>{
@@ -15,6 +16,8 @@ Map<String, WidgetBuilder> getApliacationRoutes() {
     'card'              : (BuildContext context) => Card_Page(),
     'animatedContainer' : (BuildContext context) => Animated_Container(),
     'inputs'            : (BuildContext context) => Inputs_Page(),
+    'list'              : (BuildContext context) => Sliders_Page(),
+
 
   };
 }

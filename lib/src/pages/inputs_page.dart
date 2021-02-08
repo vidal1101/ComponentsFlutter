@@ -6,12 +6,13 @@ class Inputs_Page extends StatefulWidget {
 }
 
 class _Inputs_PageState extends State<Inputs_Page> {
-
-  //variables de los controles 
+  //variables de los controles
   String _nombre = '';
   String _email = '';
   String _password = '';
   TextEditingController _inputFielfecha = new TextEditingController();
+  List _poderes = ['volar', 'Super Fuerza', 'Super Aliento', 'Fuerza'];
+  String _opcionSeleccionadaCombo = 'volar';
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,10 @@ class _Inputs_PageState extends State<Inputs_Page> {
           Divider(
             color: Colors.brown,
           ),
-          
+          _crearComboBox(),
+          Divider(
+            color: Colors.brown,
+          ),
         ],
       ),
     );
@@ -67,6 +71,9 @@ class _Inputs_PageState extends State<Inputs_Page> {
     );
   }
 
+/**
+ * crear la cajita designada para un email 
+ */
   Widget _crearEmail() {
     return TextField(
       keyboardType: TextInputType.emailAddress,
@@ -86,6 +93,9 @@ class _Inputs_PageState extends State<Inputs_Page> {
     );
   }
 
+/**
+ * crear la cajita de texto para el password 
+ */
   Widget _crearInputPassword() {
     return TextField(
       obscureText: true,
@@ -106,6 +116,8 @@ class _Inputs_PageState extends State<Inputs_Page> {
     );
   }
 
+/*crear el text feiel en el cual se llama a mostar un show dialog 
+ */
   Widget _crearFecha(BuildContext context) {
     return TextField(
       controller: _inputFielfecha,
@@ -129,22 +141,54 @@ class _Inputs_PageState extends State<Inputs_Page> {
     );
   }
 
+  /*un show dialog con el cual se muestra un calender 
+   */
   _selectDate(BuildContext context) async {
     DateTime fechaSeleccionada = await showDatePicker(
       context: context,
       initialDate: new DateTime.now(),
       firstDate: new DateTime(2010),
       lastDate: new DateTime(2030),
-      locale: Locale('es','ES'),
+      locale: Locale('es', 'ES'),
     );
 
     if (fechaSeleccionada != null) {
-      setState(() => _inputFielfecha.text = fechaSeleccionada.toString(), );
+      setState(
+        () => _inputFielfecha.text = fechaSeleccionada.toString(),
+      );
     }
   }
 
+  /*lee una lista de opciones de un combo box tipo string 
+   */
+  List<DropdownMenuItem<String>> getOpcionesComboitems() {
+    List<DropdownMenuItem<String>> lista = new List();
 
+    _poderes.forEach((poder) {
+      lista.add(DropdownMenuItem(
+        child: Text(poder),
+        value: poder,
+      ));
+    });
 
+    return lista;
+  }
 
-
+  Widget _crearComboBox() {
+    return Row(
+      children: <Widget>[
+        Icon(Icons.list),
+        SizedBox(width: 20.0,),
+        DropdownButton(
+          value: _opcionSeleccionadaCombo,
+          items: getOpcionesComboitems(),
+          onChanged: (optSeleccionada) {
+            setState(() {
+              _opcionSeleccionadaCombo = optSeleccionada;
+            });
+          },
+        ),
+      ],
+    );
+  }
 }
