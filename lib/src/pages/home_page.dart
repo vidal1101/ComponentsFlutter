@@ -16,12 +16,6 @@ class Home_Page extends StatelessWidget {
       ),
       // body: ListView(children: _CrearItems()),
       body: _Lista(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.close),
-        onPressed: () {
-          Navigator.of(context);
-        },
-      ),
     );
   }
 
@@ -49,13 +43,13 @@ class Home_Page extends StatelessWidget {
       final wiggetTemporal = ListTile(
         title: Text(opt['texto']),
         leading: getIcon(opt['icon']),
-        trailing: Icon(Icons.exit_to_app, color: Colors.blueGrey),
+        trailing: Icon(Icons.exit_to_app, color: Colors.deepPurple),
         onTap: () {
           /*
           final ruta = MaterialPageRoute(builder: (context) => AlertsPage());
           Navigator.push(context, ruta);
           */
-          Navigator.pushNamed(context, opt['ruta'] );
+          Navigator.pushNamed(context, opt['ruta']);
         },
       );
 

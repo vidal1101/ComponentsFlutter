@@ -7,8 +7,9 @@ final _iconos = <String, IconData>{
   'donut_large': Icons.donut_large,
   'input': Icons.input,
   'image': Icons.image,
+  'list': Icons.view_list,
 };
 
 Icon getIcon(String nombreIcono) {
-  return Icon(_iconos[nombreIcono], color: Colors.cyan);
+  return Icon(_iconos[nombreIcono], color: Colors.tealAccent);
 }
