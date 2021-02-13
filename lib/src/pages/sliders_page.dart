@@ -49,9 +49,9 @@ class _Sliders_PageState extends State<Sliders_Page> {
   Widget _mostrarImagen() {
     return FadeInImage(
       placeholder: AssetImage('assets/jar-loading.gif'),
-      fadeInDuration: Duration(seconds: 5),
+      fadeInDuration: Duration(seconds: 3),
       image: NetworkImage(
-          'https://iso.500px.com/wp-content/uploads/2014/06/W4A2827-1.jpg'),
+          'https://hipertextual.com/files/2017/11/liga_de_la_justicia_zack_snyder_joss_whedon.jpg'),
       width: _valorSliders,
       fit: BoxFit.contain,
       );
