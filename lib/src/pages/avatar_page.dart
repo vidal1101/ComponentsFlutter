@@ -12,7 +12,7 @@ class AvatarPage extends StatelessWidget {
             padding: EdgeInsets.all(3.0),
             margin: EdgeInsets.only(right: 5.0),
             child: CircleAvatar(
-              backgroundImage: AssetImage('assets/avatarmeli.jpg'),
+              backgroundImage:NetworkImage('https://sm.ign.com/t/ign_latam/screenshot/default/superman-henry-cavill_8km6.1280.jpg'),
               radius: 25.0,
             ),
           ),
@@ -20,8 +20,8 @@ class AvatarPage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(right: 15.0),
             child: CircleAvatar(
-              child: Text('ML'),
-              backgroundColor: Colors.purpleAccent,
+              child: Text('SM'),
+              backgroundColor: Colors.redAccent,
             ),
           )
         ],
@@ -31,13 +31,13 @@ class AvatarPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             FadeInImage(
-              image: AssetImage('assets/meli.jpg'),
+              image: NetworkImage('https://i.pinimg.com/originals/bc/05/58/bc05581166dfdce6a1c5d5aa27503741.jpg'),
               fadeInDuration: Duration(seconds: 5),
               placeholder: AssetImage('assets/jar-loading.gif'),
             ),
             Container(
               padding: EdgeInsets.all(10.0),
-              child: Text('Te Amo princesa'),
+              child: Text('El Hombre de Acero.'),
               
               
             )
