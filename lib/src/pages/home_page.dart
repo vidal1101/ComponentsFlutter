@@ -5,6 +5,10 @@ import 'package:componetesflutter/src/providers/menu_providers.dart';
 import 'package:componetesflutter/src/utils/icons_util.dart';
 import 'package:componetesflutter/src/pages/alerts_page.dart';
 
+
+/**
+ * Ruta de inicio de la pagina y la cual carga el resto de opciones de la app
+ */
 class Home_Page extends StatelessWidget {
   final opciones = ['UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO', 'SEIS', 'SIETE'];
 
@@ -20,11 +24,17 @@ class Home_Page extends StatelessWidget {
     );
   }
 
+
+
   /** metodo que espera que se procesa toda la informacion, antes de rotornar.
-   * 
  */
   Widget _Lista() {
+    /**
+     * la funcion FUTUREBUILDER contruye la app, y pide los parametro. 
+     * future, builder, y una lista vacia 
+     */
     return FutureBuilder(
+
       future: menuProviders.cargarDatos(),
       initialData: [],
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {

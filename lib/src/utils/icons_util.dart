@@ -8,6 +8,7 @@ final _iconos = <String, IconData>{
   'input': Icons.input,
   'image': Icons.image,
   'list': Icons.view_list,
+  'camera': Icons.camera_alt,
 };
 
 Icon getIcon(String nombreIcono) {
